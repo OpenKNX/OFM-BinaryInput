@@ -69,7 +69,7 @@ void BinaryInput::processInput()
 
   if (lState != mCurrentState)
   {
-    SERIAL_DEBUG.printf("BE %i: %i\n\r", mIndex, lState);
+    //SERIAL_DEBUG.printf("BE %i: %i\n\r", mIndex, lState);
     mCurrentState = lState;
     sendState();
   }
@@ -134,6 +134,7 @@ void BinaryInput::sendState()
   if (lSendState == -1)
     return;
 
+  SERIAL_DEBUG.printf("BE %i: %i\n\r", mIndex, lSendState);
   getKo(BI_KoInputOutput)->value(lSendState, getDPT(VAL_DPT_1));
 }
 

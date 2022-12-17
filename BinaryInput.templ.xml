@@ -37,8 +37,7 @@
               <ComObject Id="%AID%_O-%T%%CCC%000" Name="Input%C%Output" Number="%K0%" Text="" ObjectSize="1 Bit" FunctionText="" ReadFlag="Enabled" WriteFlag="Disabled" CommunicationFlag="Enabled" TransmitFlag="Enabled" UpdateFlag="Disabled" ReadOnInitFlag="Disabled" DatapointType="DPST-1-9" />
             </ComObjectTable>
             <ComObjectRefs>
-              <ComObjectRef Id="%AID%_O-%T%%CCC%000_R-%T%%CCC%00001" RefId="%AID%_O-%T%%CCC%000" FunctionText="BE %Z%, 1=Geschlossen, 0=Geöffnet" Text="Eingang: {{0:%Z%}}" TextParameterRefId="%AID%_P-%T%%CCC%000_R-%T%%CCC%00001"/>
-              <ComObjectRef Id="%AID%_O-%T%%CCC%000_R-%T%%CCC%00002" RefId="%AID%_O-%T%%CCC%000" FunctionText="BE %Z%, 1=Geöffnet, 0=Geschlossen" Text="Eingang: {{0:%Z%}}" TextParameterRefId="%AID%_P-%T%%CCC%000_R-%T%%CCC%00001"/>
+              <ComObjectRef Id="%AID%_O-%T%%CCC%000_R-%T%%CCC%00001" RefId="%AID%_O-%T%%CCC%000" FunctionText="BE %Z%, Ausgang" Text="Eingang: {{0:%Z%}}" TextParameterRefId="%AID%_P-%T%%CCC%000_R-%T%%CCC%00001"/>
             </ComObjectRefs>
           </Static>
           <Dynamic>

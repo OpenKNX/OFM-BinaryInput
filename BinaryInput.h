@@ -37,7 +37,7 @@ protected:
   uint32_t mLastPeriodicSend = 0;
 
 public:
-  BinaryInput(uint8_t iIndex, uint8_t iInputPin, int8_t iPulsePin);
+  BinaryInput(uint8_t iIndex, uint8_t iInputPin, int8_t iPulsePin = -1);
   ~BinaryInput();
   
   void setup();
