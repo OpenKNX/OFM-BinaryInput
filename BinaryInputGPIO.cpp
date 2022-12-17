@@ -1,5 +1,5 @@
 #include "BinaryInputGPIO.h"
-/*
+
 BinaryInputGPIO::BinaryInputGPIO(uint8_t iIndex, uint8_t iInputPin, int8_t iPulsePin)
 {
   mIndex = iIndex;
@@ -22,4 +22,3 @@ bool BinaryInputGPIO::queryHardwareInput()
 
   return false;
 }
-*/

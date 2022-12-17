@@ -3,12 +3,6 @@
 
 class BinaryInputGPIO : public BinaryInput
 {
-};
-
-/*
-class BinaryInputGPIO : public BinaryInput
-{
-
 protected:
   uint8_t mInputPin = 0;
   int8_t mPulsePin = 0;
@@ -19,4 +13,3 @@ public:
 
   bool queryHardwareInput();
 };
-*/

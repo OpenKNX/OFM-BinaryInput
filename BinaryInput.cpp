@@ -1,5 +1,6 @@
 #include "BinaryInput.h"
 
+
 uint32_t BinaryInput::calcParamIndex(uint16_t iParamIndex)
 {
   return iParamIndex + mIndex * BI_ParamBlockSize + BI_ParamBlockOffset;
@@ -25,6 +26,10 @@ GroupObject *BinaryInput::getKo(uint8_t iKoIndex)
 {
   return &knx.getGroupObject(calcKoNumber(iKoIndex));
 }
+
+bool BinaryInput::queryHardwareInput() {
+  return false;
+};
 
 void BinaryInput::setup()
 {
@@ -54,6 +59,7 @@ void BinaryInput::loop()
   processInput();
   processPeriodicSend();
 }
+
 
 void BinaryInput::processInput()
 {
@@ -136,28 +142,4 @@ void BinaryInput::sendState()
 
   SERIAL_DEBUG.printf("BE %i: %i\n\r", mIndex, lSendState);
   getKo(BI_KoInputOutput)->value(lSendState, getDPT(VAL_DPT_1));
-}
-
-BinaryInput::BinaryInput(uint8_t iIndex, uint8_t iInputPin, int8_t iPulsePin)
-{
-  mIndex = iIndex;
-  mInputPin = iInputPin;
-  mPulsePin = iPulsePin;
-}
-BinaryInput::~BinaryInput() {}
-
-bool BinaryInput::queryHardwareInput()
-{
-  if (mPulsePin >= 0)
-    digitalWrite(mPulsePin, true);
-
-  bool lState = digitalRead(mInputPin);
-
-  if (mPulsePin >= 0)
-    digitalWrite(mPulsePin, false);
-
-  if (lState == LOW)
-    return true;
-
-  return false;
 }

@@ -13,6 +13,7 @@ protected:
   uint16_t calcKoNumber(uint8_t iKoIndex);
   int8_t calcKoIndex(uint16_t iKoNumber);
   GroupObject *getKo(uint8_t iKoIndex);
+
   bool debounced(bool iCurrentState);
   void processInput();
   void processPeriodicSend();
@@ -27,8 +28,6 @@ protected:
   uint8_t mParamPulsing;
 
   uint8_t mIndex = 0;
-  uint8_t mInputPin = 0;
-  int8_t mPulsePin = 0;
 
   int8_t mCurrentState = -1;
   int8_t mLastButtonState = -1;
@@ -37,11 +36,8 @@ protected:
   uint32_t mLastPeriodicSend = 0;
 
 public:
-  BinaryInput(uint8_t iIndex, uint8_t iInputPin, int8_t iPulsePin = -1);
-  ~BinaryInput();
-  
-  void setup();
-  void loop();
-  void processInputKo(GroupObject &iKo);
+  virtual void setup();
+  virtual void loop();
+
   virtual bool queryHardwareInput();
 };
