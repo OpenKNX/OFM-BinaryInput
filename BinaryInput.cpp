@@ -125,13 +125,13 @@ void BinaryInput::sendState()
 {
   int8_t lSendState = -1;
 
-  if (mCurrentState && mParamClose == 1) // Closed - send 0
+  if (mCurrentState && mParamClose == 1) // Open - send 0
     lSendState = false;
 
   if (mCurrentState && mParamClose == 2) // Closed - send 1
     lSendState = true;
 
-  if (!mCurrentState && mParamOpen == 1) // Closed - send 0
+  if (!mCurrentState && mParamOpen == 1) // OPen - send 0
     lSendState = false;
 
   if (!mCurrentState && mParamOpen == 2) // Closed - send 1
