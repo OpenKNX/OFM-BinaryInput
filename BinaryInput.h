@@ -23,7 +23,7 @@ protected:
   uint8_t mParamActive;
   uint8_t mParamOpen;
   uint8_t mParamClose;
-  uint8_t mParamDebouncing;
+  uint32_t mParamDebouncing;
   uint32_t mParamPeriodic;
   uint8_t mParamPulsing;
 

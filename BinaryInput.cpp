@@ -75,7 +75,9 @@ void BinaryInput::processInput()
 
   if (lState != mCurrentState)
   {
+    #ifdef BI_DEBUG
     //SERIAL_DEBUG.printf("BE %i: %i\n\r", mIndex, lState);
+    #endif
     mCurrentState = lState;
     sendState();
   }
@@ -89,7 +91,7 @@ bool BinaryInput::debounced(bool iCurrentState)
     mLastButtonState = iCurrentState;
   }
 
-  if ((millis() - mLastDebounceTime) > mParamDebouncing)
+  if (delayCheck(mLastDebounceTime, mParamDebouncing))
   {
     mLastButtonState = iCurrentState;
     return false;
@@ -100,7 +102,7 @@ bool BinaryInput::debounced(bool iCurrentState)
 
 bool BinaryInput::checkQueryTime()
 {
-  if ((millis() - mLastQueryTime) > BI_QueryDelay)
+  if (delayCheck(mLastQueryTime, BI_QueryDelay))
   {
     mLastQueryTime = millis();
     return true;
@@ -114,7 +116,7 @@ void BinaryInput::processPeriodicSend()
   if (mParamPeriodic == 0)
     return;
 
-  if ((millis() - mLastPeriodicSend) > mParamPeriodic)
+  if (delayCheck(mLastPeriodicSend, mParamPeriodic))
   {
     mLastPeriodicSend = millis();
     sendState();
@@ -140,6 +142,8 @@ void BinaryInput::sendState()
   if (lSendState == -1)
     return;
 
+  #ifdef BI_DEBUG
   SERIAL_DEBUG.printf("BE %i: %i\n\r", mIndex, lSendState);
+  #endif
   getKo(BI_KoInputOutput)->value(lSendState, getDPT(VAL_DPT_1));
 }
