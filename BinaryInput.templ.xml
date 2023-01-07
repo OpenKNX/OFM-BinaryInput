@@ -10,7 +10,7 @@
               <Parameter Id="%AID%_P-%T%%CCC%000" Name="Input%C%Name" ParameterType="%AID%_PT-Text40Byte" Text="Beschreibung" Value="" />
               <Union SizeInBit="16">
                 <Memory CodeSegment="%AID%_RS-04-00000" Offset="0" BitOffset="0" />
-                <Parameter Id="%AID%_UP-%T%%CCC%001" Name="Input%C%Active" Offset="0" BitOffset="0" ParameterType="%AID%_PT-OnOffYesNo" Text="Aktiv" Value="0" />
+                <Parameter Id="%AID%_UP-%T%%CCC%001" Name="Input%C%Active" Offset="0" BitOffset="0" ParameterType="%AID%_PT-OnOffYesNo" Text="Aktiv" Value="1" />
                 <Parameter Id="%AID%_UP-%T%%CCC%005" Name="Input%C%Open" Offset="0" BitOffset="2" ParameterType="%AID%_PT-BIOutput" Text="Geöffnet" Value="1" />
                 <Parameter Id="%AID%_UP-%T%%CCC%006" Name="Input%C%Close" Offset="0" BitOffset="4" ParameterType="%AID%_PT-BIOutput" Text="Geschlossen" Value="2" />
                 <Parameter Id="%AID%_UP-%T%%CCC%004" Name="Input%C%Periodic" Offset="0" BitOffset="5" ParameterType="%AID%_PT-OnOffYesNo" Text="Zyklisch senden" Value="0" />
