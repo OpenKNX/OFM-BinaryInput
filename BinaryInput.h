@@ -14,13 +14,12 @@ protected:
   int8_t calcKoIndex(uint16_t iKoNumber);
   GroupObject *getKo(uint8_t iKoIndex);
 
-  bool debounced(bool iCurrentState);
+  bool debounce();
   void processInput();
   void processPeriodicSend();
-  bool checkQueryTime();
   void sendState();
 
-  uint8_t mParamActive;
+  bool mParamActive;
   uint8_t mParamOpen;
   uint8_t mParamClose;
   uint32_t mParamDebouncing;
@@ -30,14 +29,19 @@ protected:
   uint8_t mIndex = 0;
 
   int8_t mCurrentState = -1;
-  int8_t mLastButtonState = -1;
+  int8_t mLastDebounceState = -1;
+  int8_t mCurrentHardwareState = -1;
+
   uint32_t mLastDebounceTime = 0;
-  uint32_t mLastQueryTime = 0;
   uint32_t mLastPeriodicSend = 0;
 
 public:
-  virtual void setup();
-  virtual void loop();
+  BinaryInput(uint8_t iIndex);
+  ~BinaryInput();
 
-  virtual bool queryHardwareInput();
+  void setup();
+  void loop();
+
+  void setHardwareState(bool iState);
+  bool isActive();
 };

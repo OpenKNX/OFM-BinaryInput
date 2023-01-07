@@ -18,13 +18,6 @@
                   <Enumeration Text="100ms" Value="100" Id="%AID%_PT-BIDebouncing_EN-100" />
                 </TypeRestriction>
               </ParameterType>
-              <ParameterType Id="%AID%_PT-BIActive" Name="BIActive">
-                <TypeRestriction Base="Value" SizeInBit="2">
-                  <Enumeration Text="Inaktiv" Value="0" Id="%AID%_PT-BIActive_EN-0" />
-                  <Enumeration Text="Aktiv" Value="1" Id="%AID%_PT-BIActive_EN-1" />
-                  <Enumeration Text="Funktionslos" Value="2" Id="%AID%_PT-BIActive_EN-2" />
-                </TypeRestriction>
-              </ParameterType>
               <ParameterType Id="%AID%_PT-BIOutput" Name="BIOutput">
                 <TypeRestriction Base="Value" SizeInBit="2">
                   <Enumeration Text="Deaktiviert" Value="0" Id="%AID%_PT-BIOutput_EN-0" />

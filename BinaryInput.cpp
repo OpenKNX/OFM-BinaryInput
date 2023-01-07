@@ -1,5 +1,9 @@
 #include "BinaryInput.h"
 
+BinaryInput::BinaryInput(uint8_t iIndex)
+{
+  mIndex = iIndex;
+}
 
 uint32_t BinaryInput::calcParamIndex(uint16_t iParamIndex)
 {
@@ -27,10 +31,6 @@ GroupObject *BinaryInput::getKo(uint8_t iKoIndex)
   return &knx.getGroupObject(calcKoNumber(iKoIndex));
 }
 
-bool BinaryInput::queryHardwareInput() {
-  return false;
-};
-
 void BinaryInput::setup()
 {
   // Params
@@ -42,79 +42,89 @@ void BinaryInput::setup()
 
   getKo(BI_KoInputOutput)->valueNoSend(false, getDPT(VAL_DPT_1));
 
-  // Debug
-  #ifdef BI_DEBUG
+// Debug
+#ifdef BI_DEBUG
   SERIAL_DEBUG.printf("BE %i mParamActive: %i\n\r", mIndex, mParamActive);
   SERIAL_DEBUG.printf("BE %i mParamOpen: %i\n\r", mIndex, mParamOpen);
   SERIAL_DEBUG.printf("BE %i mParamClose: %i\n\r", mIndex, mParamClose);
   SERIAL_DEBUG.printf("BE %i mParamDebouncing: %i\n\r", mIndex, mParamDebouncing);
   SERIAL_DEBUG.printf("BE %i mParamPeriodic: %i\n\r", mIndex, mParamPeriodic);
-  #endif
+#endif
 }
 void BinaryInput::loop()
 {
-  if (mParamActive != 1)
+  if (!mParamActive)
     return;
 
   processInput();
   processPeriodicSend();
 }
 
+void BinaryInput::setHardwareState(bool iState)
+{
+  if (iState == mCurrentHardwareState)
+    return;
+
+#ifdef BI_DEBUG
+  SERIAL_DEBUG.printf("BE %i: HardwareState %i\n\r", mIndex, iState);
+#endif
+  mCurrentHardwareState = iState;
+}
 
 void BinaryInput::processInput()
 {
-  // pulsed query
-  if (!checkQueryTime())
+  // no hw state available
+  if (mCurrentHardwareState == -1)
     return;
 
-  bool lState = queryHardwareInput();
-
-  // Skip till debounced
-  if (debounced(lState))
+  if (debounce())
     return;
 
-  if (lState != mCurrentState)
+  if (mCurrentHardwareState != mCurrentState)
   {
-    #ifdef BI_DEBUG
-    //SERIAL_DEBUG.printf("BE %i: %i\n\r", mIndex, lState);
-    #endif
-    mCurrentState = lState;
+
+    mCurrentState = mCurrentHardwareState;
     sendState();
   }
 }
 
-bool BinaryInput::debounced(bool iCurrentState)
+bool BinaryInput::debounce()
 {
-  if (iCurrentState != mLastButtonState)
+  // Skip is debouncing disabled
+  if (mParamDebouncing == 0)
+    return false;
+
+  if (mCurrentHardwareState != mLastDebounceState)
   {
     mLastDebounceTime = millis();
-    mLastButtonState = iCurrentState;
+    mLastDebounceState = mCurrentHardwareState;
   }
 
   if (delayCheck(mLastDebounceTime, mParamDebouncing))
   {
-    mLastButtonState = iCurrentState;
+    mLastDebounceState = mCurrentHardwareState;
     return false;
   }
 
   return true;
 }
 
-bool BinaryInput::checkQueryTime()
-{
-  if (delayCheck(mLastQueryTime, BI_QueryDelay))
-  {
-    mLastQueryTime = millis();
-    return true;
-  }
-
-  return false;
-}
-
 void BinaryInput::processPeriodicSend()
 {
+  // no hw state available
+  if (mCurrentState == -1)
+    return;
+
+  // periodic send is disabled
   if (mParamPeriodic == 0)
     return;
+
+  // first run - skip
+  if (mLastPeriodicSend == 0)
+  {
+    mLastPeriodicSend = millis();
+    return;
+  }
 
   if (delayCheck(mLastPeriodicSend, mParamPeriodic))
   {
@@ -142,8 +152,13 @@ void BinaryInput::sendState()
   if (lSendState == -1)
     return;
 
-  #ifdef BI_DEBUG
+#ifdef BI_DEBUG
   SERIAL_DEBUG.printf("BE %i: %i\n\r", mIndex, lSendState);
-  #endif
+#endif
   getKo(BI_KoInputOutput)->value(lSendState, getDPT(VAL_DPT_1));
+}
+
+bool BinaryInput::isActive()
+{
+  return mParamActive;
 }
