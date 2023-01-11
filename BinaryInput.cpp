@@ -34,13 +34,13 @@ GroupObject *BinaryInput::getKo(uint8_t iKoIndex)
 void BinaryInput::setup()
 {
   // Params
-  mParamActive = (knx.paramByte(calcParamIndex(BI_InputActive)) & BI_InputActiveMask) >> BI_InputActiveShift;
-  mParamOpen = (knx.paramByte(calcParamIndex(BI_InputOpen)) & BI_InputOpenMask) >> BI_InputOpenShift;
-  mParamClose = (knx.paramByte(calcParamIndex(BI_InputClose)) & BI_InputCloseMask) >> BI_InputCloseShift;
-  mParamDebouncing = (knx.paramByte(calcParamIndex(BI_InputDebouncing)));
-  mParamPeriodic = (getDelayPattern(calcParamIndex(BI_InputPeriodicBase)));
+  mParamActive = (knx.paramByte(calcParamIndex(BI_ChannelActive)) & BI_ChannelActiveMask) >> BI_ChannelActiveShift;
+  mParamOpen = (knx.paramByte(calcParamIndex(BI_ChannelOpen)) & BI_ChannelOpenMask) >> BI_ChannelOpenShift;
+  mParamClose = (knx.paramByte(calcParamIndex(BI_ChannelClose)) & BI_ChannelCloseMask) >> BI_ChannelCloseShift;
+  mParamDebouncing = (knx.paramByte(calcParamIndex(BI_ChannelDebouncing)));
+  mParamPeriodic = (getDelayPattern(calcParamIndex(BI_ChannelPeriodicBase)));
 
-  getKo(BI_KoInputOutput)->valueNoSend(false, getDPT(VAL_DPT_1));
+  getKo(BI_KoChannelOutput)->valueNoSend(false, getDPT(VAL_DPT_1));
 
 // Debug
 #ifdef BI_DEBUG
@@ -155,7 +155,7 @@ void BinaryInput::sendState()
 #ifdef BI_DEBUG
   SERIAL_DEBUG.printf("BE %i: %i\n\r", mIndex, lSendState);
 #endif
-  getKo(BI_KoInputOutput)->value(lSendState, getDPT(VAL_DPT_1));
+  getKo(BI_KoChannelOutput)->value(lSendState, getDPT(VAL_DPT_1));
 }
 
 bool BinaryInput::isActive()
