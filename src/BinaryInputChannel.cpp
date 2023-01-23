@@ -3,10 +3,6 @@
 BinaryInputChannel::BinaryInputChannel(uint8_t index)
 {
     _channelIndex = index;
-    _channelParamBlockSize = BI_ParamBlockSize;
-    _channelParamOffset = BI_ParamBlockOffset;
-    _channelParamKoBlockSize = BI_KoBlockSize;
-    _channelParamKoOffset = BI_KoOffset;
 }
 
 const char* BinaryInputChannel::name()
@@ -18,28 +14,20 @@ const char* BinaryInputChannel::name()
 
 void BinaryInputChannel::setup()
 {
-    // Params
-    _paramActive = (knx.paramByte(calcParamIndex(BI_ChannelActive)) & BI_ChannelActiveMask) >> BI_ChannelActiveShift;
-    _paramOpen = (knx.paramByte(calcParamIndex(BI_ChannelOpen)) & BI_ChannelOpenMask) >> BI_ChannelOpenShift;
-    _paramClose = (knx.paramByte(calcParamIndex(BI_ChannelClose)) & BI_ChannelCloseMask) >> BI_ChannelCloseShift;
-    _paramDebouncing = (knx.paramByte(calcParamIndex(BI_ChannelDebouncing)));
-    _paramPeriodic = (getDelayPattern(calcParamIndex(BI_ChannelPeriodicBase)));
-    _paramPeriodic = 0;
-
-    getKo(BI_KoChannelOutput)->valueNoSend(false, getDPT(VAL_DPT_1));
+   KoBI_ChannelOutput.valueNoSend(false, DPT_Switch);
 
 // Debug
 #ifdef BI_DEBUG
-    debug("paramActive: %i", _paramActive);
-    debug("paramOpen: %i", _paramOpen);
-    debug("paramClose: %i", _paramClose);
-    debug("paramDebouncing: %i", _paramDebouncing);
-    debug("paramPeriodic: %i", _paramPeriodic);
+    debug("paramActive: %i", ParamBI_ChannelActive);
+    debug("paramOpen: %i", ParamBI_ChannelOpen);
+    debug("paramClose: %i", ParamBI_ChannelClose);
+    debug("paramDebouncing: %i", ParamBI_ChannelDebouncing);
+    debug("paramPeriodic: %i", ParamBI_ChannelPeriodicTimeMS);
 #endif
 }
 void BinaryInputChannel::loop()
 {
-    if (!_paramActive)
+    if (!ParamBI_ChannelActive)
         return;
 
     processInput();
@@ -77,7 +65,7 @@ void BinaryInputChannel::processInput()
 bool BinaryInputChannel::debounce()
 {
     // Skip is debouncing disabled
-    if (_paramDebouncing == 0)
+    if (ParamBI_ChannelDebouncing == 0)
         return false;
 
     if (_currentHardwareState != _lastDebounceState)
@@ -86,7 +74,7 @@ bool BinaryInputChannel::debounce()
         _lastDebounceState = _currentHardwareState;
     }
 
-    if (delayCheck(_lastDebounceTime, _paramDebouncing))
+    if (delayCheck(_lastDebounceTime, ParamBI_ChannelDebouncing))
     {
         _lastDebounceState = _currentHardwareState;
         return false;
@@ -97,12 +85,14 @@ bool BinaryInputChannel::debounce()
 
 void BinaryInputChannel::processPeriodicSend()
 {
+    uint32_t paramValue = ParamBI_ChannelPeriodicTimeMS;
+
     // no hw state available
     if (_currentState == -1)
         return;
 
     // periodic send is disabled
-    if (_paramPeriodic == 0)
+    if (paramValue == 0)
         return;
 
     // first run - skip
@@ -112,7 +102,7 @@ void BinaryInputChannel::processPeriodicSend()
         return;
     }
 
-    if (delayCheck(_lastPeriodicSend, _paramPeriodic))
+    if (delayCheck(_lastPeriodicSend, paramValue))
     {
         _lastPeriodicSend = millis();
         sendState();
@@ -123,16 +113,16 @@ void BinaryInputChannel::sendState()
 {
     int8_t state = -1;
 
-    if (_currentState && _paramClose == 1) // Open - send 0
+    if (_currentState && ParamBI_ChannelClose == 1) // Open - send 0
         state = false;
 
-    if (_currentState && _paramClose == 2) // Closed - send 1
+    if (_currentState && ParamBI_ChannelClose == 2) // Closed - send 1
         state = true;
 
-    if (!_currentState && _paramOpen == 1) // OPen - send 0
+    if (!_currentState && ParamBI_ChannelOpen == 1) // OPen - send 0
         state = false;
 
-    if (!_currentState && _paramOpen == 2) // Closed - send 1
+    if (!_currentState && ParamBI_ChannelOpen == 2) // Closed - send 1
         state = true;
 
     if (state == -1)
@@ -141,10 +131,10 @@ void BinaryInputChannel::sendState()
 #ifdef BI_DEBUG
     debug("sendState: %i", state);
 #endif
-    getKo(BI_KoChannelOutput)->value(state, getDPT(VAL_DPT_1));
+    KoBI_ChannelOutput.value(state, DPT_Switch);
 }
 
 bool BinaryInputChannel::isActive()
 {
-    return _paramActive;
+    return ParamBI_ChannelActive;
 }
