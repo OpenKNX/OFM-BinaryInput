@@ -14,15 +14,18 @@ const char* BinaryInputChannel::name()
 
 void BinaryInputChannel::setup()
 {
+    if (!ParamBI_ChannelActive)
+        return;
+
    KoBI_ChannelOutput.valueNoSend(false, DPT_Switch);
 
 // Debug
 #ifdef BI_DEBUG
-    debug("paramActive: %i", ParamBI_ChannelActive);
-    debug("paramOpen: %i", ParamBI_ChannelOpen);
-    debug("paramClose: %i", ParamBI_ChannelClose);
-    debug("paramDebouncing: %i", ParamBI_ChannelDebouncing);
-    debug("paramPeriodic: %i", ParamBI_ChannelPeriodicTimeMS);
+    log("paramActive: %i", ParamBI_ChannelActive);
+    log("paramOpen: %i", ParamBI_ChannelOpen);
+    log("paramClose: %i", ParamBI_ChannelClose);
+    log("paramDebouncing: %i", ParamBI_ChannelDebouncing);
+    log("paramPeriodic: %i", ParamBI_ChannelPeriodicTimeMS);
 #endif
 }
 void BinaryInputChannel::loop()
@@ -36,11 +39,14 @@ void BinaryInputChannel::loop()
 
 void BinaryInputChannel::setHardwareState(bool state)
 {
+    if (!ParamBI_ChannelActive)
+        return;
+        
     if (state == _currentHardwareState)
         return;
 
 #ifdef BI_DEBUG
-    debug("setHardwareState %i", state);
+    log("setHardwareState %i", state);
 #endif
     _currentHardwareState = state;
 }
@@ -129,7 +135,7 @@ void BinaryInputChannel::sendState()
         return;
 
 #ifdef BI_DEBUG
-    debug("sendState: %i", state);
+    log("sendState: %i", state);
 #endif
     KoBI_ChannelOutput.value(state, DPT_Switch);
 }
