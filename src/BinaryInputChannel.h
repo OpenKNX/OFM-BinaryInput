@@ -32,5 +32,5 @@ class BinaryInputChannel : public OpenKNX::Channel
 
     void setHardwareState(bool state);
     bool isActive();
-    virtual const char* name();
+    const char* name() override;
 };
