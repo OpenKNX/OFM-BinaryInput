@@ -27,10 +27,10 @@ class BinaryInputChannel : public OpenKNX::Channel
   public:
     BinaryInputChannel(uint8_t index);
 
-    void setup();
-    void loop();
+    void setup() override;
+    void loop() override;
+    const char* name() override;
 
     void setHardwareState(bool state);
     bool isActive();
-    const char* name() override;
 };

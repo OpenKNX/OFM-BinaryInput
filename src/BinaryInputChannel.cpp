@@ -5,10 +5,10 @@ BinaryInputChannel::BinaryInputChannel(uint8_t index)
     _channelIndex = index;
 }
 
-const char* BinaryInputChannel::name()
+const char *BinaryInputChannel::name()
 {
-    char* buffer = new char[22];
-    sprintf(buffer, "BinaryInputChannel<%i>", _channelIndex + 1);
+    char *buffer = new char[20];
+    sprintf(buffer, "BinaryInput<%i>", _channelIndex + 1);
     return buffer;
 }
 
@@ -17,10 +17,10 @@ void BinaryInputChannel::setup()
     if (!ParamBI_ChannelActive)
         return;
 
-   KoBI_ChannelOutput.valueNoSend(false, DPT_Switch);
+    KoBI_ChannelOutput.valueNoSend(false, DPT_Switch);
 
 // Debug
-#ifdef BI_DEBUG
+#ifdef TRACE_BINARY_INPUT
     log("paramActive: %i", ParamBI_ChannelActive);
     log("paramOpen: %i", ParamBI_ChannelOpen);
     log("paramClose: %i", ParamBI_ChannelClose);
@@ -41,11 +41,11 @@ void BinaryInputChannel::setHardwareState(bool state)
 {
     if (!ParamBI_ChannelActive)
         return;
-        
+
     if (state == _currentHardwareState)
         return;
 
-#ifdef BI_DEBUG
+#ifdef TRACE_BINARY_INPUT
     log("setHardwareState %i", state);
 #endif
     _currentHardwareState = state;
@@ -134,7 +134,7 @@ void BinaryInputChannel::sendState()
     if (state == -1)
         return;
 
-#ifdef BI_DEBUG
+#ifdef TRACE_BINARY_INPUT
     log("sendState: %i", state);
 #endif
     KoBI_ChannelOutput.value(state, DPT_Switch);
