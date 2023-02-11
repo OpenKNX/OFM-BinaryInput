@@ -7,9 +7,7 @@ BinaryInputChannel::BinaryInputChannel(uint8_t index)
 
 const char *BinaryInputChannel::name()
 {
-    char *buffer = new char[20];
-    sprintf(buffer, "BinaryInput<%i>", _channelIndex + 1);
-    return buffer;
+    return "BinaryInput";
 }
 
 void BinaryInputChannel::setup()
