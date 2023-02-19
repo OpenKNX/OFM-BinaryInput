@@ -29,7 +29,7 @@ class BinaryInputChannel : public OpenKNX::Channel
 
     void setup() override;
     void loop() override;
-    const char* name() override;
+    const std::string name() override;
 
     void setHardwareState(bool state);
     bool isActive();

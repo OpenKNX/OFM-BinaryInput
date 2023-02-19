@@ -5,7 +5,7 @@ BinaryInputChannel::BinaryInputChannel(uint8_t index)
     _channelIndex = index;
 }
 
-const char *BinaryInputChannel::name()
+const std::string BinaryInputChannel::name()
 {
     return "BinaryInput";
 }
