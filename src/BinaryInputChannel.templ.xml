@@ -10,11 +10,11 @@
               <Parameter Id="%AID%_P-%T%%CCC%000" Name="Channel%C%Name" ParameterType="%AID%_PT-Text40Byte" Text="Beschreibung" Value="" />
               <Union SizeInBit="16">
                 <Memory CodeSegment="%AID%_RS-04-00000" Offset="0" BitOffset="0" />
-                <Parameter Id="%AID%_UP-%T%%CCC%001" Name="Channel%C%Active" Offset="0" BitOffset="0" ParameterType="%AID%_PT-OnOffYesNo" Text="Aktiv" Value="1" />
+                <Parameter Id="%AID%_UP-%T%%CCC%001" Name="Channel%C%Active" Offset="0" BitOffset="0" ParameterType="%AID%_PT-OnOffYesNo" Text="Aktiv" Value="0" />
                 <Parameter Id="%AID%_UP-%T%%CCC%005" Name="Channel%C%Open" Offset="0" BitOffset="2" ParameterType="%AID%_PT-BIOutput" Text="Geöffnet" Value="1" />
                 <Parameter Id="%AID%_UP-%T%%CCC%006" Name="Channel%C%Close" Offset="0" BitOffset="4" ParameterType="%AID%_PT-BIOutput" Text="Geschlossen" Value="2" />
                 <Parameter Id="%AID%_UP-%T%%CCC%004" Name="Channel%C%Periodic" Offset="0" BitOffset="5" ParameterType="%AID%_PT-OnOffYesNo" Text="Zyklisch senden" Value="0" />
-                <Parameter Id="%AID%_UP-%T%%CCC%003" Name="Channel%C%Debouncing" Offset="1" BitOffset="0" ParameterType="%AID%_PT-BIDebouncing" Text="Entprellung" Value="0" />
+                <Parameter Id="%AID%_UP-%T%%CCC%003" Name="Channel%C%Debouncing" Offset="1" BitOffset="0" ParameterType="%AID%_PT-BIDebouncing" Text="Entprellung" Value="10" />
               </Union>
               <!-- Periodic -->
               <Union SizeInBit="16">
