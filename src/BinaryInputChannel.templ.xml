@@ -43,20 +43,24 @@
           <Dynamic>
             <ChannelIndependentBlock>
               <!-- START INCLUDE HERE -->
-              <ParameterBlock Id="%AID%_PB-%C%1" Name="Channel%C%Page" Text="Eingang %Z%: {{0:-}}" TextParameterRefId="%AID%_P-%T%%CCC%000_R-%T%%CCC%00001">
-                <Channel Id="%AID%_CH-BI%CC%" Name="f%CC%BI" Number="BI%CC%" Text="Eingang %Z%: {{0:-}}" TextParameterRefId="%AID%_P-%T%%CCC%000_R-%T%%CCC%00001">
+              <ParameterBlock Id="%AID%_PB-%C%1" Name="Channel%C%Page" Text="Eingang %Z%: {{0: ...}}" TextParameterRefId="%AID%_P-%T%%CCC%000_R-%T%%CCC%00001" Icon="import" HelpContext="Empty">
+                <Channel Id="%AID%_CH-BI%CC%" Name="f%CC%BI" Number="BI%CC%" Text="Eingang %Z%: {{0: ...}}" TextParameterRefId="%AID%_P-%T%%CCC%000_R-%T%%CCC%00001">
                   <ParameterBlock Id="%AID%_PB-%T%%CCC%01" Name="Channel%C%Wrapper" Inline="true">
                     <ParameterSeparator Id="%AID%_PS-nnn" Text="Konfiguration" UIHint="Headline" />
                     <!-- Name -->
-                    <ParameterRefRef RefId="%AID%_P-%T%%CCC%000_R-%T%%CCC%00001" />
+                    <ParameterRefRef RefId="%AID%_P-%T%%CCC%000_R-%T%%CCC%00001" Icon="tag-outline" HelpContext="BI-ChannelName" />
                     <!-- Status -->
-                    <ParameterRefRef RefId="%AID%_UP-%T%%CCC%001_R-%T%%CCC%00101" />
+                    <ParameterRefRef RefId="%AID%_UP-%T%%CCC%001_R-%T%%CCC%00101" Icon="power-cycle" HelpContext="BI-ChannelActive" />
                     <choose ParamRefId="%AID%_UP-%T%%CCC%001_R-%T%%CCC%00101">
                       <when test=">0">
-                        <ParameterRefRef RefId="%AID%_UP-%T%%CCC%003_R-%T%%CCC%00301" />
-                        <ParameterRefRef RefId="%AID%_UP-%T%%CCC%005_R-%T%%CCC%00501" />
-                        <ParameterRefRef RefId="%AID%_UP-%T%%CCC%006_R-%T%%CCC%00601" />
-                        <ParameterRefRef RefId="%AID%_UP-%T%%CCC%004_R-%T%%CCC%00401" />
+                        <!-- Debounce -->
+                        <ParameterRefRef RefId="%AID%_UP-%T%%CCC%003_R-%T%%CCC%00301" Icon="wave" HelpContext="BI-ChannelDebounce" />
+                        <!-- Open -->
+                        <ParameterRefRef RefId="%AID%_UP-%T%%CCC%005_R-%T%%CCC%00501" Icon="electric-switch" HelpContext="BI-ChannelOpened" />
+                        <!-- Close -->
+                        <ParameterRefRef RefId="%AID%_UP-%T%%CCC%006_R-%T%%CCC%00601" Icon="electric-switch-closed" HelpContext="BI-ChannelClosed" />
+                        <!-- Periodic -->
+                        <ParameterRefRef RefId="%AID%_UP-%T%%CCC%004_R-%T%%CCC%00401" Icon="timer-outline" HelpContext="BI-ChannelDebounce" />
                         <choose ParamRefId="%AID%_UP-%T%%CCC%004_R-%T%%CCC%00401">
                           <when test=">0">
                             <ParameterBlock Id="%AID%_PB-nnn" Name="Channel%C%Periodic" Inline="true" Layout="Grid">
