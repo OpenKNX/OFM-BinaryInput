@@ -7,61 +7,61 @@
         <ApplicationProgram>
           <Static>
             <Parameters>
-              <Parameter Id="%AID%_P-%T%%CCC%000" Name="Channel%C%Name" ParameterType="%AID%_PT-Text40Byte" Text="Beschreibung" Value="" />
+              <Parameter Id="%AID%_P-%TT%%CC%000" Name="Channel%C%Name" ParameterType="%AID%_PT-Text40Byte" Text="Beschreibung" Value="" />
               <Union SizeInBit="16">
                 <Memory CodeSegment="%AID%_RS-04-00000" Offset="0" BitOffset="0" />
-                <Parameter Id="%AID%_UP-%T%%CCC%001" Name="Channel%C%Active" Offset="0" BitOffset="0" ParameterType="%AID%_PT-OnOffYesNo" Text="Aktiv" Value="0" />
-                <Parameter Id="%AID%_UP-%T%%CCC%005" Name="Channel%C%Open" Offset="0" BitOffset="2" ParameterType="%AID%_PT-BIOutput" Text="Geöffnet" Value="1" />
-                <Parameter Id="%AID%_UP-%T%%CCC%006" Name="Channel%C%Close" Offset="0" BitOffset="4" ParameterType="%AID%_PT-BIOutput" Text="Geschlossen" Value="2" />
-                <Parameter Id="%AID%_UP-%T%%CCC%004" Name="Channel%C%Periodic" Offset="0" BitOffset="5" ParameterType="%AID%_PT-OnOffYesNo" Text="Zyklisch senden" Value="0" />
-                <Parameter Id="%AID%_UP-%T%%CCC%003" Name="Channel%C%Debouncing" Offset="1" BitOffset="0" ParameterType="%AID%_PT-BIDebouncing" Text="Entprellung" Value="10" />
+                <Parameter Id="%AID%_UP-%TT%%CC%001" Name="Channel%C%Active" Offset="0" BitOffset="0" ParameterType="%AID%_PT-OnOffYesNo" Text="Aktiv" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%%CC%005" Name="Channel%C%Open" Offset="0" BitOffset="2" ParameterType="%AID%_PT-BIOutput" Text="Geöffnet" Value="1" />
+                <Parameter Id="%AID%_UP-%TT%%CC%006" Name="Channel%C%Close" Offset="0" BitOffset="4" ParameterType="%AID%_PT-BIOutput" Text="Geschlossen" Value="2" />
+                <Parameter Id="%AID%_UP-%TT%%CC%004" Name="Channel%C%Periodic" Offset="0" BitOffset="5" ParameterType="%AID%_PT-OnOffYesNo" Text="Zyklisch senden" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%%CC%003" Name="Channel%C%Debouncing" Offset="1" BitOffset="0" ParameterType="%AID%_PT-BIDebouncing" Text="Entprellung" Value="10" />
               </Union>
               <!-- Periodic -->
               <Union SizeInBit="16">
                 <Memory CodeSegment="%AID%_RS-04-00000" Offset="2" BitOffset="0" />
-                <Parameter Id="%AID%_UP-%T%%CCC%011" Name="Channel%C%PeriodicBase" Offset="0" BitOffset="0" ParameterType="%AID%_PT-DelayBase" Text="Zeitbasis" Value="0" />
-                <Parameter Id="%AID%_UP-%T%%CCC%012" Name="Channel%C%PeriodicTime" Offset="0" BitOffset="2" ParameterType="%AID%_PT-DelayTime" Text="Zeit" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%%CC%011" Name="Channel%C%PeriodicBase" Offset="0" BitOffset="0" ParameterType="%AID%_PT-DelayBase" Text="Zeitbasis" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%%CC%012" Name="Channel%C%PeriodicTime" Offset="0" BitOffset="2" ParameterType="%AID%_PT-DelayTime" Text="Zeit" Value="0" />
               </Union>
             </Parameters>
             <ParameterRefs>
-              <ParameterRef Id="%AID%_P-%T%%CCC%000_R-%T%%CCC%00001" RefId="%AID%_P-%T%%CCC%000" />
-              <ParameterRef Id="%AID%_UP-%T%%CCC%001_R-%T%%CCC%00101" RefId="%AID%_UP-%T%%CCC%001" />
-              <ParameterRef Id="%AID%_UP-%T%%CCC%003_R-%T%%CCC%00301" RefId="%AID%_UP-%T%%CCC%003" />
-              <ParameterRef Id="%AID%_UP-%T%%CCC%004_R-%T%%CCC%00401" RefId="%AID%_UP-%T%%CCC%004" />
-              <ParameterRef Id="%AID%_UP-%T%%CCC%005_R-%T%%CCC%00501" RefId="%AID%_UP-%T%%CCC%005" />
-              <ParameterRef Id="%AID%_UP-%T%%CCC%006_R-%T%%CCC%00601" RefId="%AID%_UP-%T%%CCC%006" />
-              <ParameterRef Id="%AID%_UP-%T%%CCC%011_R-%T%%CCC%01101" RefId="%AID%_UP-%T%%CCC%011" />
-              <ParameterRef Id="%AID%_UP-%T%%CCC%012_R-%T%%CCC%01201" RefId="%AID%_UP-%T%%CCC%012" />
+              <ParameterRef Id="%AID%_P-%TT%%CC%000_R-%TT%%CC%00001" RefId="%AID%_P-%TT%%CC%000" />
+              <ParameterRef Id="%AID%_UP-%TT%%CC%001_R-%TT%%CC%00101" RefId="%AID%_UP-%TT%%CC%001" />
+              <ParameterRef Id="%AID%_UP-%TT%%CC%003_R-%TT%%CC%00301" RefId="%AID%_UP-%TT%%CC%003" />
+              <ParameterRef Id="%AID%_UP-%TT%%CC%004_R-%TT%%CC%00401" RefId="%AID%_UP-%TT%%CC%004" />
+              <ParameterRef Id="%AID%_UP-%TT%%CC%005_R-%TT%%CC%00501" RefId="%AID%_UP-%TT%%CC%005" />
+              <ParameterRef Id="%AID%_UP-%TT%%CC%006_R-%TT%%CC%00601" RefId="%AID%_UP-%TT%%CC%006" />
+              <ParameterRef Id="%AID%_UP-%TT%%CC%011_R-%TT%%CC%01101" RefId="%AID%_UP-%TT%%CC%011" />
+              <ParameterRef Id="%AID%_UP-%TT%%CC%012_R-%TT%%CC%01201" RefId="%AID%_UP-%TT%%CC%012" />
             </ParameterRefs>
             <ComObjectTable>
-              <ComObject Id="%AID%_O-%T%%CCC%000" Name="Channel%C%Output" Number="%K0%" Text="" ObjectSize="1 Bit" FunctionText="" ReadFlag="Enabled" WriteFlag="Disabled" CommunicationFlag="Enabled" TransmitFlag="Enabled" UpdateFlag="Disabled" ReadOnInitFlag="Disabled" DatapointType="DPST-1-9" />
+              <ComObject Id="%AID%_O-%TT%%CC%000" Name="Channel%C%Output" Number="%K0%" Text="" ObjectSize="1 Bit" FunctionText="" ReadFlag="Enabled" WriteFlag="Disabled" CommunicationFlag="Enabled" TransmitFlag="Enabled" UpdateFlag="Disabled" ReadOnInitFlag="Disabled" DatapointType="DPST-1-9" />
             </ComObjectTable>
             <ComObjectRefs>
-              <ComObjectRef Id="%AID%_O-%T%%CCC%000_R-%T%%CCC%00001" RefId="%AID%_O-%T%%CCC%000" FunctionText="BE %Z%, Ausgang" Text="Eingang: {{0:%Z%}}" TextParameterRefId="%AID%_P-%T%%CCC%000_R-%T%%CCC%00001"/>
+              <ComObjectRef Id="%AID%_O-%TT%%CC%000_R-%TT%%CC%00001" RefId="%AID%_O-%TT%%CC%000" FunctionText="BE %Z%, Ausgang" Text="Eingang: {{0:%Z%}}" TextParameterRefId="%AID%_P-%TT%%CC%000_R-%TT%%CC%00001"/>
             </ComObjectRefs>
           </Static>
           <Dynamic>
             <ChannelIndependentBlock>
               <!-- START INCLUDE HERE -->
-              <ParameterBlock Id="%AID%_PB-%C%1" Name="Channel%C%Page" Text="Eingang %Z%: {{0: ...}}" TextParameterRefId="%AID%_P-%T%%CCC%000_R-%T%%CCC%00001" Icon="import" HelpContext="Empty">
-                <Channel Id="%AID%_CH-BI%CC%" Name="f%CC%BI" Number="BI%CC%" Text="Eingang %Z%: {{0: ...}}" TextParameterRefId="%AID%_P-%T%%CCC%000_R-%T%%CCC%00001">
-                  <ParameterBlock Id="%AID%_PB-%T%%CCC%01" Name="Channel%C%Wrapper" Inline="true">
+              <ParameterBlock Id="%AID%_PB-%C%1" Name="Channel%C%Page" Text="Eingang %Z%: {{0: ...}}" TextParameterRefId="%AID%_P-%TT%%CC%000_R-%TT%%CC%00001" Icon="import" HelpContext="Empty">
+                <Channel Id="%AID%_CH-BI%CC%" Name="f%CC%BI" Number="BI%CC%" Text="Eingang %Z%: {{0: ...}}" TextParameterRefId="%AID%_P-%TT%%CC%000_R-%TT%%CC%00001">
+                  <ParameterBlock Id="%AID%_PB-%TT%%CC%01" Name="Channel%C%Wrapper" Inline="true">
                     <ParameterSeparator Id="%AID%_PS-nnn" Text="Konfiguration" UIHint="Headline" />
                     <!-- Name -->
-                    <ParameterRefRef RefId="%AID%_P-%T%%CCC%000_R-%T%%CCC%00001" Icon="tag-outline" HelpContext="BI-ChannelName" />
+                    <ParameterRefRef RefId="%AID%_P-%TT%%CC%000_R-%TT%%CC%00001" Icon="tag-outline" HelpContext="BI-ChannelName" />
                     <!-- Status -->
-                    <ParameterRefRef RefId="%AID%_UP-%T%%CCC%001_R-%T%%CCC%00101" Icon="power-cycle" HelpContext="BI-ChannelActive" />
-                    <choose ParamRefId="%AID%_UP-%T%%CCC%001_R-%T%%CCC%00101">
+                    <ParameterRefRef RefId="%AID%_UP-%TT%%CC%001_R-%TT%%CC%00101" Icon="power-cycle" HelpContext="BI-ChannelActive" />
+                    <choose ParamRefId="%AID%_UP-%TT%%CC%001_R-%TT%%CC%00101">
                       <when test=">0">
                         <!-- Debounce -->
-                        <ParameterRefRef RefId="%AID%_UP-%T%%CCC%003_R-%T%%CCC%00301" Icon="wave" HelpContext="BI-ChannelDebounce" />
+                        <ParameterRefRef RefId="%AID%_UP-%TT%%CC%003_R-%TT%%CC%00301" Icon="wave" HelpContext="BI-ChannelDebounce" />
                         <!-- Open -->
-                        <ParameterRefRef RefId="%AID%_UP-%T%%CCC%005_R-%T%%CCC%00501" Icon="electric-switch" HelpContext="BI-ChannelOpened" />
+                        <ParameterRefRef RefId="%AID%_UP-%TT%%CC%005_R-%TT%%CC%00501" Icon="electric-switch" HelpContext="BI-ChannelOpened" />
                         <!-- Close -->
-                        <ParameterRefRef RefId="%AID%_UP-%T%%CCC%006_R-%T%%CCC%00601" Icon="electric-switch-closed" HelpContext="BI-ChannelClosed" />
+                        <ParameterRefRef RefId="%AID%_UP-%TT%%CC%006_R-%TT%%CC%00601" Icon="electric-switch-closed" HelpContext="BI-ChannelClosed" />
                         <!-- Periodic -->
-                        <ParameterRefRef RefId="%AID%_UP-%T%%CCC%004_R-%T%%CCC%00401" Icon="timer-outline" HelpContext="BI-ChannelDebounce" />
-                        <choose ParamRefId="%AID%_UP-%T%%CCC%004_R-%T%%CCC%00401">
+                        <ParameterRefRef RefId="%AID%_UP-%TT%%CC%004_R-%TT%%CC%00401" Icon="timer-outline" HelpContext="BI-ChannelDebounce" />
+                        <choose ParamRefId="%AID%_UP-%TT%%CC%004_R-%TT%%CC%00401">
                           <when test=">0">
                             <ParameterBlock Id="%AID%_PB-nnn" Name="Channel%C%Periodic" Inline="true" Layout="Grid">
                               <Rows>
@@ -72,13 +72,13 @@
                                 <Column Id="%AID%_PB-nnn_C-2" Name="Col2" Width="15%" />
                                 <Column Id="%AID%_PB-nnn_C-3" Name="Col3" Width="20%" />
                               </Columns>
-                              <ParameterRefRef RefId="%AID%_UP-%T%%CCC%012_R-%T%%CCC%01201" Cell="1,2" />
-                              <ParameterRefRef RefId="%AID%_UP-%T%%CCC%011_R-%T%%CCC%01101" Cell="1,3" />
+                              <ParameterRefRef RefId="%AID%_UP-%TT%%CC%012_R-%TT%%CC%01201" Cell="1,2" />
+                              <ParameterRefRef RefId="%AID%_UP-%TT%%CC%011_R-%TT%%CC%01101" Cell="1,3" />
                             </ParameterBlock>
                           </when>
                         </choose>
 
-                        <ComObjectRefRef RefId="%AID%_O-%T%%CCC%000_R-%T%%CCC%00001" />
+                        <ComObjectRefRef RefId="%AID%_O-%TT%%CC%000_R-%TT%%CC%00001" />
                       </when>
                     </choose>
                   </ParameterBlock>
