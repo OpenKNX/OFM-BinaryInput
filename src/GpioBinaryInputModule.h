@@ -22,7 +22,7 @@ class GpioBinaryInputModule : public OpenKNX::Module
 
     uint32_t _lastHardwareQuery = 0;
 
-    const uint8_t _gpioPins[OPENKNX_BI_GPIO_COUNT] = {OPENKNX_BI_GPIO_PINS};
+    const uint16_t _gpioPins[OPENKNX_BI_GPIO_COUNT] = {OPENKNX_BI_GPIO_PINS};
 
     BinaryInputChannel* _channels[OPENKNX_BI_GPIO_COUNT];
 };

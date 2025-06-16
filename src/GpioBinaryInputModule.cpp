@@ -23,13 +23,13 @@ void GpioBinaryInputModule::setup()
     for (uint8_t i = 0; i < MIN(BI_ChannelCount, OPENKNX_BI_GPIO_COUNT); i++)
     {
 #if OPENKNX_BI_ONLEVEL == LOW
-        pinMode(_gpioPins[i], INPUT_PULLUP);
+        openknx.gpio.pinMode(_gpioPins[i], INPUT_PULLUP);
 #else // OPENKNX_BI_ONLEVEL == HIGH
-        pinMode(_gpioPins[i], INPUT_PULLDOWN);
+        openknx.gpio.pinMode(_gpioPins[i], INPUT_PULLDOWN);
 #endif
 
 #if defined(OPENKNX_BI_PULSE) && OPENKNX_BI_PULSE != -1
-        pinMode(OPENKNX_BI_PULSE, OUTPUT);
+        openknx.gpio.pinMode(OPENKNX_BI_PULSE, OUTPUT);
 #endif
 
         _channels[i] = new BinaryInputChannel(i);
@@ -57,18 +57,18 @@ void GpioBinaryInputModule::processHardwareInputs()
     if (!delayCheck(_lastHardwareQuery, OPENKNX_BI_PULSE_PAUSE_TIME))
         return;
 
-    digitalWrite(OPENKNX_BI_PULSE, true);
+    openknx.gpio.digitalWrite(OPENKNX_BI_PULSE, true);
     delayMicroseconds(OPENKNX_BI_PULSE_WAIT_TIME);
 #endif
 
     for (uint8_t i = 0; i < MIN(BI_ChannelCount, OPENKNX_BI_GPIO_COUNT); i++)
     {
         if (_channels[i]->isActive())
-            _channels[i]->setHardwareState(digitalRead(_gpioPins[i]) == OPENKNX_BI_ONLEVEL);
+            _channels[i]->setHardwareState(openknx.gpio.digitalRead(_gpioPins[i]) == OPENKNX_BI_ONLEVEL);
     }
 
 #if defined(OPENKNX_BI_PULSE) && OPENKNX_BI_PULSE != -1
-    digitalWrite(OPENKNX_BI_PULSE, false);
+    openknx.gpio.digitalWrite(OPENKNX_BI_PULSE, false);
     _lastHardwareQuery = millis();
 #endif
 }
