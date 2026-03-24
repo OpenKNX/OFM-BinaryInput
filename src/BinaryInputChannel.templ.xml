@@ -13,7 +13,7 @@
                 <Parameter Id="%AID%_UP-%TT%%CC%001" Name="Channel%C%Active" Offset="0" BitOffset="0" ParameterType="%AID%_PT-OnOffYesNo" Text="Aktiv" Value="0" />
                 <Parameter Id="%AID%_UP-%TT%%CC%005" Name="Channel%C%Open" Offset="0" BitOffset="2" ParameterType="%AID%_PT-BIOutput" Text="Geöffnet" Value="1" />
                 <Parameter Id="%AID%_UP-%TT%%CC%006" Name="Channel%C%Close" Offset="0" BitOffset="4" ParameterType="%AID%_PT-BIOutput" Text="Geschlossen" Value="2" />
-                <Parameter Id="%AID%_UP-%TT%%CC%004" Name="Channel%C%Periodic" Offset="0" BitOffset="5" ParameterType="%AID%_PT-OnOffYesNo" Text="Zyklisch senden" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%%CC%004" Name="Channel%C%Periodic" Offset="0" BitOffset="6" ParameterType="%AID%_PT-OnOffYesNo" Text="Zyklisch senden" Value="0" />
                 <Parameter Id="%AID%_UP-%TT%%CC%003" Name="Channel%C%Debouncing" Offset="1" BitOffset="0" ParameterType="%AID%_PT-BIDebouncing" Text="Entprellung" Value="10" />
               </Union>
               <!-- Periodic -->
