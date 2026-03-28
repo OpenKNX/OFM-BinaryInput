@@ -22,19 +22,21 @@ void GpioBinaryInputModule::setup()
 
     for (uint8_t i = 0; i < MIN(BI_ChannelCount, OPENKNX_BI_GPIO_COUNT); i++)
     {
-#if OPENKNX_BI_ONLEVEL == LOW
-        openknx.gpio.pinMode(_gpioPins[i], INPUT_PULLUP);
-#else // OPENKNX_BI_ONLEVEL == HIGH
-        openknx.gpio.pinMode(_gpioPins[i], INPUT_PULLDOWN);
-#endif
-
-#if defined(OPENKNX_BI_PULSE) && OPENKNX_BI_PULSE != -1
-        openknx.gpio.pinMode(OPENKNX_BI_PULSE, OUTPUT);
-#endif
-
+        
         _channels[i] = new BinaryInputChannel(i);
         _channels[i]->setup();
+        if (_channels[i]->isActive())
+        {
+        #if OPENKNX_BI_ONLEVEL == LOW
+            openknx.gpio.pinMode(_gpioPins[i], INPUT_PULLUP);
+        #else // OPENKNX_BI_ONLEVEL == HIGH
+            openknx.gpio.pinMode(_gpioPins[i], INPUT_PULLDOWN);
+        #endif        
+        }
     }
+    #if defined(OPENKNX_BI_PULSE) && OPENKNX_BI_PULSE != -1
+        openknx.gpio.pinMode(OPENKNX_BI_PULSE, OUTPUT);
+    #endif
 }
 
 void GpioBinaryInputModule::loop()
