@@ -1,6 +1,13 @@
+#pragma once
+
 #include "BinaryInputChannel.h"
 #include "OpenKNX/Module.h"
 #include "hardware.h"
+
+#define OPENKNX_LEDFUNC_BI_ACT 600  // Binary Input Central Activity
+#define OPENKNX_LEDFUNC_BI_STATUS 700
+#define OPENKNX_LEDFUNC_BI_CHANNEL_ACT (OPENKNX_LEDFUNC_BI_ACT + _channelIndex)
+#define OPENKNX_LEDFUNC_BI_CHANNEL_STATUS (OPENKNX_LEDFUNC_BI_STATUS + _channelIndex)
 
 #if defined(OPENKNX_BI_GPIO_PINS) && OPENKNX_BI_GPIO_COUNT > 0 && BI_ChannelCount > 0
 

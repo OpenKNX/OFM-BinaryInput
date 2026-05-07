@@ -1,4 +1,5 @@
 #include "BinaryInputChannel.h"
+#include "GpioBinaryInputModule.h"
 
 BinaryInputChannel::BinaryInputChannel(uint8_t index)
 {
@@ -130,6 +131,9 @@ void BinaryInputChannel::sendState()
 
     logDebugP("sendState: %i", state);
     KoBI_ChannelOutput.value(state, DPT_Switch);
+    openknx.ledFunctions.get(OPENKNX_LEDFUNC_BI_CHANNEL_ACT)->activity(_lastLedActivity);
+    openknx.ledFunctions.get(OPENKNX_LEDFUNC_BI_ACT)->activity(_lastLedActivity);
+    openknx.ledFunctions.get(OPENKNX_LEDFUNC_BI_CHANNEL_STATUS)->on(state);
 }
 
 bool BinaryInputChannel::isActive()

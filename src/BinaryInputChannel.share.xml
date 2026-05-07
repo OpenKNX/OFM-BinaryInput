@@ -32,6 +32,11 @@
                   <Enumeration Text="Ein" Value="2" Id="%ENID%" />
                 </TypeRestriction>
               </ParameterType>
+              <ParameterType Id="%AID%_PT-SLEDFunc" Name="SLEDFunc">
+                <TypeRestriction Base="Value" SizeInBit="16" UIHint="DropDown">
+                  <Enumeration Text="Binäreingänge Zentral Aktivität" Value="600" Id="%ENID%" />
+                </TypeRestriction>
+              </ParameterType>
             </ParameterTypes>
             <Parameters>
               <Parameter Id="%AID%_P-%TT%00001" Name="VisibleChannels" ParameterType="%AID%_PT-BINumChannels" Text="Verfügbare Kanäle" Value="%BI_NumChannelsDefault%" SuffixText=" von %N%" />

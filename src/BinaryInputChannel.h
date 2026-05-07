@@ -24,6 +24,8 @@ class BinaryInputChannel : public OpenKNX::Channel
     uint32_t _lastDebounceTime = 0;
     uint32_t _lastPeriodicSend = 0;
 
+    uint32_t _lastLedActivity = 0;
+
   public:
     BinaryInputChannel(uint8_t index);
 

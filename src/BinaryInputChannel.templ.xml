@@ -6,6 +6,14 @@
       <ApplicationPrograms>
         <ApplicationProgram>
           <Static>
+            <ParameterTypes>
+              <ParameterType Id="%AID%_PT-SLEDFunc" Name="SLEDFunc">
+                <TypeRestriction Base="Value" SizeInBit="16" UIHint="DropDown">
+                  <Enumeration Text="Binäreingang %Z% Aktivität" Value="6%CC%" Id="%ENID%" />
+                  <Enumeration Text="Binäreingang %Z% Status" Value="7%CC%" Id="%ENID%" />
+                </TypeRestriction>
+              </ParameterType>
+            </ParameterTypes>
             <Parameters>
               <Parameter Id="%AID%_P-%TT%%CC%000" Name="Channel%C%Name" ParameterType="%AID%_PT-Text40Byte" Text="Beschreibung" Value="" />
               <Union SizeInBit="16">
