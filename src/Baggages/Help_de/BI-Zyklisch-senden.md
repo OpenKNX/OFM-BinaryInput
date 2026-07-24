@@ -8,3 +8,4 @@ Wird als Zeit 0 angegeben, wird nicht wiederholt. In einem solchen Falle sollte 
 
 Im Zahlenfeld wird das Zeitintervall eingegeben, über das dahinterliegende Auswahlfeld die Zeiteinheit. Es können Intervalle von bis zu 16.000 Sekunden, Minuten oder Stunden angegeben werden.
 
+
