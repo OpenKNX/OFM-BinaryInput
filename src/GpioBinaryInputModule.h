@@ -23,15 +23,24 @@ class GpioBinaryInputModule : public OpenKNX::Module
     const std::string version() override;
     void loop() override;
     void setup() override;
+#ifdef OPENKNX_BI_DYNAMIC_PINS
+    // Call before setup. GPIO 255 disables the channel; settings are supplied by the OAM.
+    bool configureChannel(uint8_t channel, uint16_t gpio, uint8_t mode, bool activeHigh);
+#endif
 
   private:
     void processHardwareInputs();
 
     uint32_t _lastHardwareQuery = 0;
 
-    const uint16_t _gpioPins[OPENKNX_BI_GPIO_COUNT] = {OPENKNX_BI_GPIO_PINS};
+    uint16_t _gpioPins[OPENKNX_BI_GPIO_COUNT] = {OPENKNX_BI_GPIO_PINS};
 
-    BinaryInputChannel* _channels[OPENKNX_BI_GPIO_COUNT];
+    BinaryInputChannel* _channels[OPENKNX_BI_GPIO_COUNT] = {};
+#ifdef OPENKNX_BI_DYNAMIC_PINS
+    uint8_t _inputModes[OPENKNX_BI_GPIO_COUNT] = {};
+    bool _activeHigh[OPENKNX_BI_GPIO_COUNT] = {};
+    bool _started = false;
+#endif
 };
 
 extern GpioBinaryInputModule openknxGpioBinaryInputModule;

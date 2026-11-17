@@ -1,7 +1,11 @@
 {
   "name": "OFM-BinaryInput",
   "version": "0.4.0",
-  "dependencies":
-  {
+  "dependencies": {},
+  "build": {
+    "srcFilter": [
+      "+<BinaryInputChannel.cpp>",
+      "+<GpioBinaryInputModule.cpp>"
+    ]
   }
 }
